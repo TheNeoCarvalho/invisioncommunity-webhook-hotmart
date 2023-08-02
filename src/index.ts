@@ -1,41 +1,42 @@
-import express, { Express, Request, Response } from 'express'
-import cors from 'cors'
-import helmet from 'helmet'
-import 'dotenv/config'
+import cors from "cors";
+import "dotenv/config";
+import express, { Express, Request, Response } from "express";
+import helmet from "helmet";
 
-import * as middleware from './middleware'
+import * as middleware from "./middleware";
 
-import articlesRouter from './routers/articles.router'
+import articlesRouter from "./routers/articles.router";
 
-const PORT = process.env.PORT || 8080
-const ENV = process.env.NODE_ENV || 'production'
+const PORT = process.env.PORT || 8080;
+const ENV = process.env.NODE_ENV || "production";
 
-const app: Express = express()
+const app: Express = express();
 
-app.use(helmet())
+app.use(helmet());
 
-app.use(cors())
+app.use(cors());
 
-app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.use(middleware.httpLogger)
+app.use(middleware.httpLogger);
 
-app.get('/', (req: Request, res: Response) => {
-  res.status(200).send('Welcome')
-})
+app.get("/", (req: Request, res: Response) => {
+  res.status(200).send("Welcome");
+});
 
 // Articles routes
 
-app.use('/articles', articlesRouter)
+app.use("/webhook", articlesRouter);
 
 // Error hanlding middleware
 
-app.use(middleware.errorHandler)
+app.use(middleware.errorHandler);
 
-app.use(middleware.notFoundHandler)
+app.use(middleware.notFoundHandler);
 
 const server = app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT} in ${ENV} environment`)
-})
+  console.log(`Server running on port ${PORT} in ${ENV} environment`);
+});
 
-export { app as default, server }
+export { app as default, server };

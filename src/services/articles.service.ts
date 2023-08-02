@@ -1,7 +1,19 @@
-import { Request } from 'express'
+import { Request } from "express";
 
-import { ServiceAPIResponse } from '../../types/service-response'
-import { Article } from '../../types/articles'
+import { Article } from "../../types/articles";
+import { ServiceAPIResponse } from "../../types/service-response";
+
+const createUser = async (): Promise<ServiceAPIResponse<Article[]>> => {
+  /* fetch data here */
+  return {
+    statusCode: 200,
+    body: [
+      {
+        title: "Article title",
+      },
+    ],
+  };
+};
 
 const getAll = async (): Promise<ServiceAPIResponse<Article[]>> => {
   /* fetch data here */
@@ -9,11 +21,11 @@ const getAll = async (): Promise<ServiceAPIResponse<Article[]>> => {
     statusCode: 200,
     body: [
       {
-        title: 'Article title',
-      }
-    ]
-  }
-}
+        title: "Article title",
+      },
+    ],
+  };
+};
 
 const getById = async (req: Request): Promise<ServiceAPIResponse<Article>> => {
   /* fetch data here */
@@ -22,8 +34,8 @@ const getById = async (req: Request): Promise<ServiceAPIResponse<Article>> => {
     statusCode: 200,
     body: {
       title: `Article title ${req.params?.id}`,
-    }
-  }
-}
+    },
+  };
+};
 
-export { getAll, getById }
+export { createUser, getAll, getById };

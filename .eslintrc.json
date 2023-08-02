@@ -14,17 +14,17 @@
     "@typescript-eslint"
   ],
   "rules": {
-    "semi": [
-      "error",
-      "never"
-    ],
-    "quotes": [
-      "error",
-      "single",
-      {
-        "avoidEscape": true
-      }
-    ]
+    // "semi": [
+    //   "error",
+    //   "never"
+    // ],
+    // "quotes": [
+    //   "error",
+    //   "double",
+    //   {
+    //     "avoidEscape": true
+    //   }
+    // ]
   },
   "ignorePatterns": [
     "dist"

@@ -1,13 +1,15 @@
-import express from 'express'
+import express from "express";
 
-import * as articlesController from '../controllers/articles.controller'
+import * as articlesController from "../controllers/articles.controller";
 
-const router = express.Router()
+const router = express.Router();
+
+router.post("/", articlesController.createUser);
 
 /* GET articles */
-router.get('/', articlesController.getAll)
+router.get("/", articlesController.getAll);
 
 /* GET article by id */
-router.get('/:id', articlesController.getById)
+router.get("/:id", articlesController.getById);
 
-export { router as default }
+export { router as default };
